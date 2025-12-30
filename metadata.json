@@ -1,6 +1,6 @@
 {
   "name": "AgroRain - Monitoramento Pluviométrico",
-  "description": "Sistema completo para produtores rurais registrarem e analisarem dados de chuva, com visualização em mapas, exportação KML e insights de IA.",
+  "description": "Sistema completo para produtores rurais registrarem e analisarem dados de chuva, com visualização em mapas e exportação KML.",
   "requestFramePermissions": [
     "geolocation"
   ]
