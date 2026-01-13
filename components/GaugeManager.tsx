@@ -6,9 +6,10 @@ import { Gauge } from '../types';
 interface Props {
   gauges: Gauge[];
   onAdd: (gauge: Gauge) => void;
+  onDelete: (id: string) => void;
 }
 
-const GaugeManager: React.FC<Props> = ({ gauges, onAdd }) => {
+const GaugeManager: React.FC<Props> = ({ gauges, onAdd, onDelete }) => {
   const [name, setName] = useState('');
   const [lat, setLat] = useState('');
   const [lng, setLng] = useState('');
@@ -125,11 +126,15 @@ const GaugeManager: React.FC<Props> = ({ gauges, onAdd }) => {
                 <tr key={g.id} className="hover:bg-slate-50 transition-colors">
                   <td className="p-4 border-b font-medium">{g.name}</td>
                   <td className="p-4 border-b text-sm text-slate-500 font-mono">
-                    {g.latitude.toFixed(5)}, {g.longitude.toFixed(5)}
+                    {Number(g.latitude).toFixed(5)}, {Number(g.longitude).toFixed(5)}
                   </td>
                   <td className="p-4 border-b text-sm text-slate-600">{g.description || '-'}</td>
                   <td className="p-4 border-b">
-                    <button className="text-red-500 hover:bg-red-50 p-1 rounded transition-colors">
+                    <button 
+                      onClick={() => onDelete(g.id)}
+                      className="text-red-500 hover:bg-red-50 p-1 rounded transition-colors"
+                      title="Excluir Pluviômetro"
+                    >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </td>

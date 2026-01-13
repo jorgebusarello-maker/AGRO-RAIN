@@ -34,7 +34,7 @@ const Dashboard: React.FC<Props> = ({ records, gauges }) => {
 
     return {
       dailyAverage: avg,
-      maxRainfall: max,
+      maxRainfall: max === -Infinity ? 0 : max,
       weeklyTotal: weekly,
       monthlyTotal: monthly,
       seasonTotal: season
@@ -66,11 +66,11 @@ const Dashboard: React.FC<Props> = ({ records, gauges }) => {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        <StatCard title="Média Diária" value={`${stats.dailyAverage.toFixed(1)} mm`} icon={<CloudRain className="w-6 h-6 text-blue-500" />} />
-        <StatCard title="Máxima Lançada" value={`${stats.maxRainfall.toFixed(1)} mm`} icon={<TrendingUp className="w-6 h-6 text-red-500" />} />
-        <StatCard title="Total Semanal" value={`${stats.weeklyTotal.toFixed(1)} mm`} icon={<Calendar className="w-6 h-6 text-emerald-500" />} />
-        <StatCard title="Total Mensal" value={`${stats.monthlyTotal.toFixed(1)} mm`} icon={<Calendar className="w-6 h-6 text-emerald-500" />} />
-        <StatCard title="Total Safra" value={`${stats.seasonTotal.toFixed(1)} mm`} icon={<Droplets className="w-6 h-6 text-emerald-600" />} />
+        <StatCard title="Média Diária" value={`${(stats.dailyAverage || 0).toFixed(1)} mm`} icon={<CloudRain className="w-6 h-6 text-blue-500" />} />
+        <StatCard title="Máxima Lançada" value={`${(stats.maxRainfall || 0).toFixed(1)} mm`} icon={<TrendingUp className="w-6 h-6 text-red-500" />} />
+        <StatCard title="Total Semanal" value={`${(stats.weeklyTotal || 0).toFixed(1)} mm`} icon={<Calendar className="w-6 h-6 text-emerald-500" />} />
+        <StatCard title="Total Mensal" value={`${(stats.monthlyTotal || 0).toFixed(1)} mm`} icon={<Calendar className="w-6 h-6 text-emerald-500" />} />
+        <StatCard title="Total Safra" value={`${(stats.seasonTotal || 0).toFixed(1)} mm`} icon={<Droplets className="w-6 h-6 text-emerald-600" />} />
       </div>
 
       {/* Chart Section */}
